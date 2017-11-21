@@ -1,4 +1,4 @@
-import com.sun.deploy.net.HttpResponse;
+package myserver;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -24,7 +24,7 @@ public class MyServer {
         }
         int[] a;
         int b;
-        List<Thread> treadList = new ArrayList<>();
+        List<Thread> treadList = new ArrayList<Thread>();
         Thread[] tread = new Thread[10];
         while (true) {
             Socket socket = null;
@@ -63,9 +63,11 @@ public class MyServer {
                 int readLength = 0;
                 while ((readLength = input.read(buffer)) != -1){
                     String requestString = new String(buffer, 0, readLength);
-                    HttpRequest httpRequest = new HttpRequest(requestString);
-                    outputStream.write(buffer);
+                    System.out.println(requestString);
+                    //HttpRequest httpRequest = new HttpRequest(requestString);
+                    //outputStream.write(buffer);
                 }
+                socket.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
